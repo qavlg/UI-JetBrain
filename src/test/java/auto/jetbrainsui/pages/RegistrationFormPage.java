@@ -1,15 +1,15 @@
 package auto.jetbrainsui.pages;
 
-import com.codeborne.selenide.Condition;
 import auto.jetbrainsui.helpers.AllureLogger;
+import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 import org.slf4j.LoggerFactory;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-
 public class RegistrationFormPage {
+
     private final AllureLogger LOG = new AllureLogger(LoggerFactory.getLogger(RegistrationFormPage.class));
 
     private static final By ACCOUNT_TITLE = By.xpath("//h1[@class='rs-h1']");
@@ -35,7 +35,6 @@ public class RegistrationFormPage {
     private static final By CONTINUE_WITH_GITHUB_BUTTON = By.xpath("//span[normalize-space()='Continue with GitHub']");
 
     private static final By CONTINUE_WITH_APPLE_BUTTON = By.xpath("//span[normalize-space()='Continue with Apple']");
-
 
     public String checkTitleAfterSubmitting() {
         LOG.info("Check whether the Account title is correct");
@@ -64,7 +63,6 @@ public class RegistrationFormPage {
         $(CONTINUE_BUTTON).click();
         LOG.info("Click on the Continue button");
     }
-
 
     public String checkTheErrorIfEmailIsEmpty() {
         LOG.info("Check whether the text 'You can't leave this field empty.' is correct");

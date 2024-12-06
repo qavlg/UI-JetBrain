@@ -1,12 +1,10 @@
 package auto.jetbrainsui.tests;
 
-import com.codeborne.selenide.Configuration;
 import auto.jetbrainsui.pages.MainPage;
 import auto.jetbrainsui.pages.RegistrationFormPage;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -104,6 +102,10 @@ public class RegistrationFormTest {
                 () -> assertTrue(rfp.checkContinueWithApple(),
                         "Not clickable")
         );
+    }
 
+    @AfterEach
+    public void tearDown() {
+        Selenide.closeWebDriver();
     }
 }
