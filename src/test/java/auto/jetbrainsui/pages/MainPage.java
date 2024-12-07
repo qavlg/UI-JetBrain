@@ -20,7 +20,7 @@ public class MainPage {
 
     private static final By DEVELOPER_TOOLS_ELEMENT = By.cssSelector("nav>div:first-child>button[aria-label='Developer Tools: Open submenu']");
 
-    private static final By KOTLIN_ELEMENT = By.cssSelector("#wt-site-header > div > div > div.wt-row.wt-row_align-items_center.wt-row_size_0.wt-row_nowrap._siteHeader__row_1ke7ips_1._siteHeader__rowAdaptive_1ke7ips_1 > div.wt-col-auto-fill.wt-col_align-self_stretch._siteHeader__contentPart_1ke7ips_1._siteHeader__desktopContentPart_1ke7ips_1 > div > nav > div._mainMenuItem_1gpjikx_3._mainMenuItemActive_1gpjikx_71._mainMenuItemFirstActive_1gpjikx_1 > div > div > div > div._mainSubmenu__content_6pz0jp_1 > div._mainSubmenu__columnsWrapper_6pz0jp_1 > div:nth-child(4) > div > div:nth-child(1) > a > span > span");
+    private static final By KOTLIN_ELEMENT = By.xpath("(//span[contains(text(), 'Kotlin')])[1]");
 
     public void clickCookieAcceptButton() {
         $(COOKIE_ACCEPT_ALL).shouldBe(visible, Duration.ofSeconds(10));

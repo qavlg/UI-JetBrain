@@ -28,9 +28,29 @@ public class KotlinPage {
 
     private static final By ADVANCED_BUTTON = By.cssSelector("div[class*='rs-text-3 rs-text-3_hardness_hard']:nth-child(1)");
 
-    public void clickContinueButton() {
+    private static final By SHOWING_RESULTS_TEXT = By.cssSelector("div[class*='ktl-list-module_searchString_rJnxa']");
+
+    private static final By DELETE_BUTTON = By.cssSelector("button[class*='customClearButton_yecGK']");
+
+    private static final By RUN_BUTTON = By.cssSelector("div.why-kotlin_controlButtons__Iu3rI > button");
+
+    private static final By TEXT_AFTER_CLICKING_RUN = By.cssSelector("span[class*='standard-output darcula']");
+
+    private static final By IDEAL_FOR_TESTS_BUTTON = By.cssSelector("div.why-kotlin_tabList__jiaTT > button:nth-child(5)");
+
+    private static final By FUNCTIONAL_BUTTON = By.cssSelector("div.why-kotlin_tabList__jiaTT > button:nth-child(4)");
+
+    private static final By OBJECT_ORIENTED_BUTTON = By.cssSelector("div.why-kotlin_tabList__jiaTT > button:nth-child(3)");
+
+    private static final By ASYNCHRONOUS_BUTTON = By.cssSelector("div.why-kotlin_tabList__jiaTT > button:nth-child(2)");
+
+    private static final By TEXT_AFTER_CLICKING_RUN_AND_ASYNCHRONOUS = By.cssSelector(".standard-output.darcula:nth-child(1)");
+
+    private static final By CLOSE_BUTTON = By.cssSelector("span[class*='standard-output darcula']");
+
+    public void clickCommunityButton() {
         $(JOIN_COMMUNITY_BUTTON).shouldBe(clickable, Duration.ofSeconds(20)).click();
-        LOG.info("Click on the Continue button");
+        LOG.info("Click on the Community button");
     }
 
     public String checkTitleCommunity() {
@@ -81,10 +101,9 @@ public class KotlinPage {
     }
 
     public void inputTextIntoSearchField(String text) {
-        for (char c : text.toCharArray()) {
-            $(SEARCH_FIELD).sendKeys(String.valueOf(c));
-            LOG.info("Enter text");
-        }
+        $(SEARCH_FIELD).sendKeys(text);
+        LOG.info("Enter text");
+
     }
 
     public boolean checkVisibilityTheAdvancedButton() {
@@ -109,5 +128,79 @@ public class KotlinPage {
             LOG.error("The Advanced is not enable");
             return false;
         }
+    }
+
+    public String checkTheShowingResultsText() {
+        LOG.info("Check whether the Showing Results text is correct");
+        $(SHOWING_RESULTS_TEXT).shouldBe(visible, Duration.ofSeconds(10));
+        return $(SHOWING_RESULTS_TEXT).getText();
+    }
+
+    public void clickDeleteButton() {
+        $(DELETE_BUTTON).shouldBe(clickable, Duration.ofSeconds(10)).click();
+        LOG.info("Click on the Delete button");
+    }
+
+    public void clickRunButton() {
+        $(RUN_BUTTON).shouldBe(clickable).click();
+        LOG.info("Click on the Run button");
+    }
+
+    public String checkTextAfterClickingRunButton() {
+        LOG.info("Check if the text after clicking the Run button is correct");
+        $(TEXT_AFTER_CLICKING_RUN).shouldBe(visible, Duration.ofSeconds(10));
+        return $(TEXT_AFTER_CLICKING_RUN).getText();
+    }
+
+    public boolean checkIdealForTestsButton() {
+        LOG.info("Check whether the Ideal for test button is clickable");
+        try {
+            $(IDEAL_FOR_TESTS_BUTTON).shouldBe(Condition.clickable);
+            LOG.info("The Ideal for tests button is clickable");
+            return true;
+        } catch (Exception e) {
+            LOG.error("The Ideal for tests button is not clickable");
+            return false;
+        }
+    }
+
+    public boolean checkFunctionalButton() {
+        LOG.info("Check whether the Functional button is clickable");
+        try {
+            $(FUNCTIONAL_BUTTON).shouldBe(Condition.clickable);
+            LOG.info("The Functional button is clickable");
+            return true;
+        } catch (Exception e) {
+            LOG.error("The Functional button is not clickable");
+            return false;
+        }
+    }
+
+    public boolean checkObjectOrientedButton() {
+        LOG.info("Check whether the Object oriented button is clickable");
+        try {
+            $(OBJECT_ORIENTED_BUTTON).shouldBe(Condition.clickable);
+            LOG.info("The Object oriented button is clickable");
+            return true;
+        } catch (Exception e) {
+            LOG.error("The Object oriented button is not clickable");
+            return false;
+        }
+    }
+
+    public void clickAsynchronousButton() {
+        $(ASYNCHRONOUS_BUTTON).shouldBe(clickable, Duration.ofSeconds(6)).click();
+        LOG.info("Click on the Asynchronous button");
+    }
+
+    public void clickCloseButton() {
+        $(CLOSE_BUTTON).shouldBe(clickable, Duration.ofSeconds(6)).click();
+        LOG.info("Click on the Close button");
+    }
+
+    public boolean checkVisibilityTextAfterClickingRunButton() {
+        LOG.info("Check whether the text is visible or not");
+        $(TEXT_AFTER_CLICKING_RUN_AND_ASYNCHRONOUS).shouldBe(visible, Duration.ofSeconds(10));
+        return true;
     }
 }
