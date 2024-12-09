@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class KotlinPage {
+
     private static final Logger LOG = LoggerFactory.getLogger(KotlinPage.class);
 
     private static final By JOIN_COMMUNITY_BUTTON = By.cssSelector("div.info-block_item__lGaST.info-block_content__4THgE > a > button");
@@ -47,6 +48,18 @@ public class KotlinPage {
     private static final By TEXT_AFTER_CLICKING_RUN_AND_ASYNCHRONOUS = By.cssSelector(".standard-output.darcula:nth-child(1)");
 
     private static final By CLOSE_BUTTON = By.cssSelector("span[class*='standard-output darcula']");
+
+    private static final By IF_THE_RESULTS_NOT_FOUND = By.cssSelector("div[class*='ktl-empty-module_resultString_-8dzl']");
+
+    private static final By LEARN_MORE_BUTTON = By.cssSelector("a[class*='light_d4ewd2_59 _withIcon_d4ewd2_144']");
+
+    private static final By LEARN_MORE_TITLE = By.cssSelector("h1[class*='introBanner-module--title--c8f80']");
+
+    private static final By RELEASES_BUTTON = By.cssSelector("li:nth-child(2)>a[class*='rs-link rs-link_hardness_hard']");
+
+    private static final By SECURITY_BUTTON_NAME = By.cssSelector("li:nth-child(4)>a[class*='rs-link rs-link_hardness_hard']");
+
+    private static final By APACHE_2_NAME = By.cssSelector("a[class*='rs-link rs-link_hardness_hard']:nth-child(3)");
 
     public void clickCommunityButton() {
         $(JOIN_COMMUNITY_BUTTON).shouldBe(clickable, Duration.ofSeconds(20)).click();
@@ -202,5 +215,48 @@ public class KotlinPage {
         LOG.info("Check whether the text is visible or not");
         $(TEXT_AFTER_CLICKING_RUN_AND_ASYNCHRONOUS).shouldBe(visible, Duration.ofSeconds(10));
         return true;
+    }
+
+    public String checkTextIfTheResultsNotFound() {
+        LOG.info("Check if the the text 'We’re sorry!' is correct");
+        $(IF_THE_RESULTS_NOT_FOUND).shouldBe(visible, Duration.ofSeconds(10));
+        return $(IF_THE_RESULTS_NOT_FOUND).getText();
+    }
+
+    public void clickLearnMoreButton() {
+        $(LEARN_MORE_BUTTON).shouldBe(clickable, Duration.ofSeconds(20)).click();
+        LOG.info("Click on the Learn More button");
+    }
+
+    public String checkTheTitleLearnMore() {
+        LOG.info("Check whether the name of the title Learn More is correct");
+        $(LEARN_MORE_TITLE).shouldBe(visible, Duration.ofSeconds(20));
+        return $(LEARN_MORE_TITLE).getText();
+    }
+
+    public boolean checkReleasesButton() {
+        LOG.info("Check whether the Releases button is clickable");
+        try {
+            $(RELEASES_BUTTON).shouldBe(Condition.clickable);
+            LOG.info("The Releases button is clickable");
+            return true;
+        } catch (Exception e) {
+            LOG.error("The Releases button is not clickable");
+            return false;
+        }
+    }
+
+    public String checkSecurityButtonName() {
+        LOG.info("Check whether the Security button name is correct");
+
+        $(SECURITY_BUTTON_NAME).shouldBe(visible, Duration.ofSeconds(10));
+        return $(SECURITY_BUTTON_NAME).getText();
+    }
+
+    public String checkTheApacheName() {
+        LOG.info("Check whether the Apache name is correct");
+
+        $(APACHE_2_NAME).shouldBe(visible, Duration.ofSeconds(10));
+        return $(APACHE_2_NAME).getText();
     }
 }

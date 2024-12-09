@@ -168,7 +168,6 @@ public class KotlinTest {
         mp.clickDeveloperToolsElement();
         mp.clickKotlinElement();
         mp.clickCookieAcceptButton();
-        kp.clickRunButton();
 
         assertAll("Check two conditions",
                 () -> assertTrue(kp.checkIdealForTestsButton(),
@@ -190,11 +189,87 @@ public class KotlinTest {
         mp.clickCookieAcceptButton();
         kp.clickAsynchronousButton();
         kp.clickRunButton();
-        kp.clickAsynchronousButton();
         kp.clickCloseButton();
 
         assertTrue(kp.checkVisibilityTextAfterClickingRunButton(),
                 "Invisible");
+    }
+
+    @Test
+    @DisplayName("#16. After entering the non-existent text into search field, appears the message that the results not found")
+    public void checkTextIfTheResultsNotFound() {
+        String text = "23TfgbhER13";
+
+        mp.clickCookieAcceptButton();
+        mp.clickDeveloperToolsElement();
+        mp.clickKotlinElement();
+        mp.clickCookieAcceptButton();
+        kp.clickSearchButton();
+        kp.inputTextIntoSearchField(text);
+
+        assertEquals("We’re sorry! We could’t find results for «23TfgbhER13»", kp.checkTextIfTheResultsNotFound(),
+                "Incorrect name");
+    }
+
+    @Test
+    @DisplayName("#17. The title is 'Protect, promote and advance the development...' after clicking on the 'Learn more' button")
+    public void checkTheUrlAndTitleOfKotlinMultiplatform() {
+
+        mp.clickCookieAcceptButton();
+        mp.clickDeveloperToolsElement();
+        mp.clickKotlinElement();
+        kp.clickLearnMoreButton();
+
+        String expectedUrl = "https://kotlinfoundation.org/";
+        WebDriverWait wait = new WebDriverWait(getWebDriver(), Duration.ofSeconds(10));
+        wait.until(driver -> driver.getCurrentUrl().equals(expectedUrl));
+        String currentUrl = getWebDriver().getCurrentUrl();
+
+        assertAll("Check two conditions",
+                () -> assertEquals("Protect, promote and advance the development of the Kotlin programming language", kp.checkTheTitleLearnMore(),
+                        "Incorrect title"),
+                () -> assertEquals(expectedUrl,
+                        currentUrl, "Current url is wrong")
+        );
+    }
+
+    @Test
+    @DisplayName("#18. The 'Releases' button is clickable")
+    public void checkReleasesButtons() {
+
+        mp.clickCookieAcceptButton();
+        mp.clickDeveloperToolsElement();
+        mp.clickKotlinElement();
+        mp.clickCookieAcceptButton();
+
+        assertTrue(kp.checkReleasesButton(),
+                "Not clickable");
+    }
+
+    @Test
+    @DisplayName("#19. The name of the 'Security' button is correct")
+    public void checkSecurityButtonName() {
+
+        mp.clickCookieAcceptButton();
+        mp.clickDeveloperToolsElement();
+        mp.clickKotlinElement();
+        mp.clickCookieAcceptButton();
+
+        assertEquals("Security", kp.checkSecurityButtonName(),
+                "Incorrect name");
+    }
+
+    @Test
+    @DisplayName("#20. The name of the 'Apache 2 license' button is correct")
+    public void checkTheApacheName() {
+
+        mp.clickCookieAcceptButton();
+        mp.clickDeveloperToolsElement();
+        mp.clickKotlinElement();
+        mp.clickCookieAcceptButton();
+
+        assertEquals("Apache 2 license", kp.checkTheApacheName(),
+                "Incorrect name");
     }
 
     @AfterEach

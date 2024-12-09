@@ -1,10 +1,11 @@
 # UI automation test-cases for the [JetBrains' website](https://www.jetbrains.com/)
 ## Manual test-cases are stored [HERE](https://docs.google.com/spreadsheets/d/1cGUj2p6rsdgDBQo1g80onMn9GOgmo-8SEa8Jk7QUp7g/edit?usp=sharing)
 
-These test-cases checks the ...
-There are twenty tests in this project.
+### *These test-cases checks:*
 
-The project uses 11 Java version.
+1.The Registration Form Page.
+2.The Kotlin Page.
+The project uses 17 Java version.
 
 In order to run the ALL tests is necessary input a command into the terminal:
 - **./mvnw clean test**  OR **mvn clean test**
